@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './globals.css';

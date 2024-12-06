@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export interface MarvelCharacter {
+export interface MarvelEntity {
     id: number;
     name: string;
     description: string;
@@ -12,26 +11,26 @@ export interface MarvelCharacter {
     comics: {
         available: number;
         collectionURI: string;
-        items: MarvelCharacter[];
+        items: [];
         returned: number;
     };
     series: {
         available: number;
         collectionURI: string;
-        items: MarvelCharacter[];
+        items: [];
         returned: number;
     };
     stories: {
         available: number;
         collectionURI: string;
-        items: MarvelCharacter[];
+        items: [];
         returned: number;
     };
     events: {
         available: number;
         collectionURI: string;
-        items: MarvelCharacter[]; 
+        items: []
         returned: number;
     };
-    urls: any[]; 
+    urls: []
 }

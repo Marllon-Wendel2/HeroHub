@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import * as CryptoJS from 'crypto-js';
+import { MarvelEntity } from '../dtos/MarvelEntity';
 
-export async function fetchCharacters() {
+export async function fetchCharacters(): Promise<MarvelEntity[]> {
     const publicKey = '74e99808fa3d0e434a8015f0522ba677';
 
     const timestamp = Date.now().toString();
@@ -29,7 +32,7 @@ export async function fetchCharacters() {
     }
 }
 
-export async function fetchCharZtoA(): Promise<any> {
+export async function fetchCharZtoA(): Promise<MarvelEntity[]> {
     const publicKey = '74e99808fa3d0e434a8015f0522ba677';
 
     const timestamp = Date.now().toString();
@@ -57,7 +60,7 @@ export async function fetchCharZtoA(): Promise<any> {
     }
 }
 
-export async function fetchCharAToZ() {
+export async function fetchCharAToZ(): Promise<MarvelEntity[]> {
     const publicKey = '74e99808fa3d0e434a8015f0522ba677';
 
     const timestamp = Date.now().toString();
@@ -85,7 +88,7 @@ export async function fetchCharAToZ() {
     }
 }
 
-export async function fetchCharById(id : string) {
+export async function fetchCharById(id : any): Promise<MarvelEntity[]> {
     const publicKey = '74e99808fa3d0e434a8015f0522ba677';
 
     const timestamp = Date.now().toString();
@@ -113,7 +116,7 @@ export async function fetchCharById(id : string) {
     }
 }
 
-export async function fetchCharByName(name : string) {
+export async function fetchCharByName(name : string): Promise<MarvelEntity[]> {
     const publicKey = '74e99808fa3d0e434a8015f0522ba677';
 
     const timestamp = Date.now().toString();

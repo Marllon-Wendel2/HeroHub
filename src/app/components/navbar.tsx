@@ -1,12 +1,16 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 'use client'
 
 import { useState } from "react";
 import { fetchCharByName } from "../services/charactersService";
+import { MarvelEntity } from "../dtos/MarvelEntity";
+import Link from "next/link";
 
 export default function Navbar() {
 
     const [searchChar, setSearchChar] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState<MarvelEntity[]>([]);
 
 
     const handleSearch = async (event: React.FormEvent) => {
@@ -21,7 +25,7 @@ export default function Navbar() {
         <div>
         <nav className="navbar bg-body-tertiary">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">MARVEL</a>
+                <Link className="navbar-brand" href="/">MARVEL</Link>
                 <form className="d-flex" role="search" onSubmit={handleSearch}>
                     <input 
                         className="form-control me-2" 
@@ -34,7 +38,7 @@ export default function Navbar() {
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <div>
-                {searchResults.map((character: any) => (
+                {searchResults.map((character: MarvelEntity) => (
                     <div key={character.id}>
                         <ul className="list-group list-group-horizontal-lg">
                             <li className="list-group-item list-group-item-dark"><a href={`/characters/${character.id}`}>{character.name}</a></li>

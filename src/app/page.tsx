@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 'use client'
 
 import Navbar from "./components/navbar";
@@ -6,16 +7,18 @@ import { fetchCharacters, fetchCharAToZ, fetchCharZtoA } from "./services/charac
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import { MarvelEntity } from "./dtos/MarvelEntity";
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function Home() {
 
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState<MarvelEntity[]>([]);
   
 
   useEffect(() => {
    const fetchData = async () => {
     try {
-      const data = await fetchCharacters();
+      const data: MarvelEntity[] = await fetchCharacters();
       setCharacters(data);
     } catch (error) {
       console.error("Erro ao buscar personagens:", error);
@@ -56,7 +59,7 @@ export default function Home() {
         </div>
       <div className={styles.feed} >
       {
-        characters.map((character) => (
+        characters? (characters.map((character) => (
           <div key={character.id} className="card" style={{ width: '18rem' }}>
           <Image
             src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
@@ -70,7 +73,7 @@ export default function Home() {
             <a href={`/characters/${character.id}`} className="btn btn-primary">Mais detalhes</a>
           </div>
         </div>
-        ))
+        ))) : ""
       }
       </div>
     </div>

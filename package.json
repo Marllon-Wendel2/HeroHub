@@ -13,7 +13,7 @@
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.7",
-    "next": "15.0.3",
+    "next": "^15.0.4",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"
   },
@@ -26,6 +26,6 @@
     "@typescript-eslint/parser": "^8.17.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.0.3",
-    "typescript": "^5"
+    "typescript": "^5.7.2"
   }
 }

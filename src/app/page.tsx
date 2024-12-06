@@ -1,95 +1,78 @@
+'use client'
+
+import Navbar from "./components/navbar";
 import Image from "next/image";
+import { fetchCharacters, fetchCharAToZ, fetchCharZtoA } from "./services/charactersService";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  const [characters, setCharacters] = useState([]);
+  
+
+  useEffect(() => {
+   const fetchData = async () => {
+    try {
+      const data = await fetchCharacters();
+      setCharacters(data);
+    } catch (error) {
+      console.error("Erro ao buscar personagens:", error);
+    }
+   };
+
+   fetchData();
+  }, []);
+
+  async function handleFilter(filter: string): Promise<void> {
+    try {
+      if (filter === "Z-A") {
+        const data = await fetchCharZtoA();  // Filtrar personagens de Z-A
+        setCharacters(data);
+      } else if (filter === "A-Z") {
+        const data = await fetchCharAToZ();  // Filtrar personagens de A-Z
+        setCharacters(data);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar personagens:", error);
+    }
+  }
+
+
+
+  return (
+    <div>
+      <Navbar/>
+      <h1>Pesornagens</h1>
+      <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Filtrar
+            </button>
+            <ul className="dropdown-menu">
+                <li><button className="dropdown-item" onClick={() => handleFilter('A-Z')}>A-Z</button></li>
+                <li><button className="dropdown-item" onClick={() => handleFilter('Z-A')}>Z-A</button></li>
+            </ul>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      <div className={styles.feed} >
+      {
+        characters.map((character) => (
+          <div key={character.id} className="card" style={{ width: '18rem' }}>
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+            className="card-img-top"
+            alt={character.name}
+            width={500} height={300}
           />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="card-body">
+            <h5 className="card-title">{character.name}</h5>
+            <p className="card-text">{character.description || 'Sem descrição disponível'}</p>
+            <a href={`/characters/${character.id}`} className="btn btn-primary">Mais detalhes</a>
+          </div>
+        </div>
+        ))
+      }
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@
 
 import Navbar from "./components/navbar";
 import Image from "next/image";
-import { fetchCharacters, fetchCharAToZ, fetchCharZtoA } from "./services/charactersService";
+import { fetchCharacters, fetchCharAToZ, fetchCharByName, fetchCharZtoA } from "./services/charactersService";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { MarvelEntity } from "./dtos/MarvelEntity";
@@ -15,6 +15,8 @@ export default function Home() {
 
   const [characters, setCharacters] = useState<MarvelEntity[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
   
 
   useEffect(() => {
@@ -39,14 +41,23 @@ export default function Home() {
       } else if (filter === "A-Z") {
         const data = await fetchCharAToZ();  // Filtrar personagens de A-Z
         setCharacters(data);
+      } else {
+        const data = await fetchCharByName(filter)
+        setCharacters(data)
+        setIsModalOpen(false)
       }
     } catch (error) {
       console.error("Erro ao buscar personagens:", error);
     }
   }
 
-
-
+  async function handleModal() {
+    if(isModalOpen) {
+      setIsModalOpen(false)
+    } else {
+      setIsModalOpen(true)
+    }
+  }
 
   return (
     <div>
@@ -59,6 +70,7 @@ export default function Home() {
               <ul className="dropdown-menu">
                   <li><button className="dropdown-item" onClick={() => handleFilter('A-Z')}>A-Z</button></li>
                   <li><button className="dropdown-item" onClick={() => handleFilter('Z-A')}>Z-A</button></li>
+                  <li><button className="dropdown-item" onClick={() => handleModal()}>Por letra</button></li>
               </ul>
           </div>
       <div className={styles.feed} >
@@ -84,6 +96,36 @@ export default function Home() {
         )))
       }
       </div>
+
+      <div className={`modal fade ${isModalOpen ? 'show' : ''}`} id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden={!isModalOpen} style={{ display: isModalOpen ? 'block' : 'none' }}>
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">New message</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setIsModalOpen(false)}></button>
+            </div>
+            <div className="modal-body">
+              <form>
+                <div className="mb-3">
+                  <label htmlFor="message-text" className="col-form-label">Qual letra deseja buscar:</label>
+                  <input 
+                  className="form-control" 
+                  id="message-text"
+                  value={message}
+                  maxLength={1}
+                  onChange={(e) => setMessage(e.target.value)}></input>
+                </div>
+              </form>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setIsModalOpen(false)}>Close</button>
+              <button type="button" className="btn btn-primary" onClick={() => handleFilter(message)}>Send message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   );
 }

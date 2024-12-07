@@ -32,8 +32,8 @@ export default function ListComics() {
             <h1 style={{ color: "white", margin: "20px"}}>COMICS</h1>
             <div id="carouselExampleInterval" className={`carousel slide ${window.innerWidth < 768 ? 'w-100' : 'w-50'}" data-bs-ride="carousel`}>
                 <div className="carousel-inner">
-                    {comics.length > 1? (comics.map((comic) => (
-                        <div className="carousel-item active" data-bs-interval="10000" key={comic.id}>
+                    {comics.length > 1? (comics.map((comic, index) => (
+                        <div className={`carousel-item ${index === 0 ? 'active' : ''}`} data-bs-interval="10000" key={comic.id}>
                                         <Image
                                             src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                                             className="d-block w-50 m-auto"

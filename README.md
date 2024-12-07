@@ -52,6 +52,6 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 Acesse a versão hospedada do projeto:
 
-  [Visite o site oficial da Marvel](https://hero-hub.vercel.app/)
+  [Visite o deploy](https://hero-hub.vercel.app/)
 
 Feito com ❤️ por MarllonDev. 😊

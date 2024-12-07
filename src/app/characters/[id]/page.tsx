@@ -8,10 +8,6 @@ import { fetchCharById } from "@/app/services/charactersService";
 import { useParams } from "next/navigation";
 import { MarvelEntity } from "@/app/dtos/MarvelEntity";
 
-// interface Params { id: string; }
-
-// interface PageProps { params: Params; }
-
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default function CharactersPage() {
     const params = useParams()
@@ -36,7 +32,7 @@ export default function CharactersPage() {
         <div>
             <Navbar/>
                 { character ? (character.map((char) => (
-                    <div className="card mb-3 w-50 m-auto"  key={char.id}>
+                    <div className={`card mb-3 ${window.innerWidth < 768 ? 'w-100' : 'w-50'} m-auto`}  key={char.id}>
                         <Image src={`${char.thumbnail.path}.${char.thumbnail.extension}`} className="card-img-top" alt="..."  width={300} height={400}/>
                         <div className="card-body">
                             <h5 className="card-title">{char.name}</h5>

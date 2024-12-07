@@ -6,11 +6,13 @@ import Image from "next/image";
 import { fetchCharacters, fetchCharAToZ, fetchCharZtoA } from "./services/charactersService";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+
 import { MarvelEntity } from "./dtos/MarvelEntity";
+import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function Home() {
+ 
 
   const [characters, setCharacters] = useState<MarvelEntity[]>([]);
   
@@ -70,7 +72,7 @@ export default function Home() {
           <div className="card-body">
             <h5 className="card-title">{character.name}</h5>
             <p className="card-text">{character.description || 'Sem descrição disponível'}</p>
-            <a href={`/characters/${character.id}`} className="btn btn-primary">Mais detalhes</a>
+            <Link href={`/characters/${character.id}`} className="btn btn-primary">Mais detalhes</Link>
           </div>
         </div>
         ))) : ""

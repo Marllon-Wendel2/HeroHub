@@ -1,6 +1,7 @@
+'use client'
+
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import styles from "../page.module.css";
 import { fetchCharZtoA } from '../services/charactersService';
 import { useEffect, useState } from 'react';
 import { MarvelEntity } from '../dtos/MarvelEntity';
@@ -8,33 +9,27 @@ import { MarvelEntity } from '../dtos/MarvelEntity';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function Filter() {
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [characters, setCharacters] = useState<MarvelEntity[]>([]);
 
-
-    async function handleFilter(filter:string): Promise<void>  {
-        if(filter === "Z-A") {
-           const feedElements = document.getElementsByClassName(styles.feed)
-           for (let i = 0; i < feedElements.length; i++) {
-            feedElements[i].innerHTML = '';
-
+    const handleFilter = (filter: string): void => {
+        if (filter === "Z-A") {
+            const filteredCharacters = characters.slice().sort((a, b) => b.name.localeCompare(a.name));
+            setCharacters(filteredCharacters);
         }
-    }
-    
-}
-
-useEffect(() => {
-    const fetchData = async () => {
-     try {
-       const data = await fetchCharZtoA();
-       setCharacters(data);
-     } catch (error) {
-       console.error("Erro ao buscar personagens:", error);
-     }
     };
- 
-    fetchData();
-   }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data: MarvelEntity[] = await fetchCharZtoA();
+                setCharacters(data);
+            } catch (error) {
+                console.error("Erro ao buscar personagens:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div className="dropdown">

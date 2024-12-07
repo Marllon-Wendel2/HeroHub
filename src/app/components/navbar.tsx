@@ -41,7 +41,7 @@ export default function Navbar() {
                 {searchResults.map((character: MarvelEntity) => (
                     <div key={character.id}>
                         <ul className="list-group list-group-horizontal-lg">
-                            <li className="list-group-item list-group-item-dark"><a href={`/characters/${character.id}`}>{character.name}</a></li>
+                            <li className="list-group-item list-group-item-dark"><Link href={`/characters/${character.id}`}>{character.name}</Link></li>
                         </ul>
                     </div>
                 ))}

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { fetchCharById } from "@/app/services/charactersService";
 import { useParams } from "next/navigation";
 import { MarvelEntity } from "@/app/dtos/MarvelEntity";
+import ListComics from "@/app/components/listOfComics";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default function CharactersPage() {
@@ -33,7 +34,7 @@ export default function CharactersPage() {
             <Navbar/>
                 { character ? (character.map((char) => (
                     <div className={`card mb-3 ${window.innerWidth < 768 ? 'w-100' : 'w-50'} m-auto`}  key={char.id}>
-                        <Image src={`${char.thumbnail.path}.${char.thumbnail.extension}`} className="card-img-top" alt="..."  width={300} height={400}/>
+                        <Image src={`${char.thumbnail.path}.${char.thumbnail.extension}`} className="card-img-top" alt="Personagem"  width={300} height={400}/>
                         <div className="card-body">
                             <h5 className="card-title">{char.name}</h5>
                             <p className="card-text">{char.description}</p>
@@ -48,6 +49,7 @@ export default function CharactersPage() {
                 ))) : <div className="spinner-border text-primary m-auto" role="status" >
                 <span className="visually-hidden">Loading...</span>
               </div>}
+              <ListComics></ListComics>
         </div>
     );
 }

@@ -7,6 +7,14 @@
   align-items: center;
 }
 
+.title {
+  color: white;
+  font-size: 34px;
+  margin: 24px;
+  margin-top: 150px;
+}
+
+
 @media screen and (min-width: 1024px) { 
   .feed {
     display: flex;
@@ -14,6 +22,10 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: unset;
+  }
+
+  .title {
+    font-size: 48px;
   }
   
 }

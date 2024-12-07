@@ -1,1 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+body {
+    background-image: url('../../public/background2.jpg');
+    margin-top: 8em;
+}
+

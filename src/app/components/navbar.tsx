@@ -6,6 +6,7 @@ import { useState } from "react";
 import { fetchCharByName } from "../services/charactersService";
 import { MarvelEntity } from "../dtos/MarvelEntity";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
 
@@ -22,29 +23,37 @@ export default function Navbar() {
     }
 
     return (
-        <div>
-        <nav className="navbar bg-body-tertiary">
+        <div style={{ position: "fixed", top: 0, bottom: 0, width: "100%", zIndex: 1000, pointerEvents: 'none' }}>
+        <nav className="navbar" style={{ backgroundColor: "#001F3F", pointerEvents: 'auto'}}>
             <div className="container-fluid">
-                <Link className="navbar-brand" href="/">MARVEL</Link>
-                <form className="d-flex" role="search" onSubmit={handleSearch}>
+                <Link className="navbar-brand" href="/"><Image 
+                src={'/Logo.jpg'}
+                width={80}
+                height={80}
+                alt="Hero Hub Logo" 
+                /></Link>
+
+                <div>
+                    <form className="d-flex w-100 w-md-50" role="search" onSubmit={handleSearch}>
                     <input 
-                        className="form-control me-2" 
+                        className="form-control me-2 flex-grow-1" 
                         type="search" 
                         placeholder="Search" 
                         aria-label="Search"
                         value={searchChar}
                         onChange={(e) => setSearchChar(e.target.value)} 
-                    />
+                        />
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <div>
-                {searchResults.map((character: MarvelEntity) => (
-                    <div key={character.id}>
-                        <ul className="list-group list-group-horizontal-lg">
-                            <li className="list-group-item list-group-item-dark"><Link href={`/characters/${character.id}`}>{character.name}</Link></li>
+                <div>
+                    <ul className="list-group" style={{position: "fixed"}}>
+                {searchChar ? (searchResults.map((character: MarvelEntity) => (
+                        <li className="list-group-item list-group-item-action bg-light text-decoration-none" key={character.id}><Link className="text-decoration-none" href={`/characters/${character.id}`}>{character.name}</Link></li>
+                        ))) : ""}
                         </ul>
                     </div>
-                ))}
+                </div>
                 </div>
             </div>
         </nav>

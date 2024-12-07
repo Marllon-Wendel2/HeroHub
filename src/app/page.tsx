@@ -6,7 +6,6 @@ import Image from "next/image";
 import { fetchCharacters, fetchCharAToZ, fetchCharZtoA } from "./services/charactersService";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
-
 import { MarvelEntity } from "./dtos/MarvelEntity";
 import Link from "next/link";
 
@@ -15,6 +14,7 @@ export default function Home() {
  
 
   const [characters, setCharacters] = useState<MarvelEntity[]>([]);
+  const [loading, setLoading] = useState(true);
   
 
   useEffect(() => {
@@ -22,6 +22,7 @@ export default function Home() {
     try {
       const data: MarvelEntity[] = await fetchCharacters();
       setCharacters(data);
+      setLoading(false)
     } catch (error) {
       console.error("Erro ao buscar personagens:", error);
     }
@@ -46,22 +47,27 @@ export default function Home() {
 
 
 
+
   return (
     <div>
       <Navbar/>
-      <h1>Pesornagens</h1>
-      <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <h1 className={styles.title} >PERSONAGENS</h1>
+          <div className="btn-group">
+            <button type="button" className="btn btn-info dropdown-toggle m-4" data-bs-toggle="dropdown" aria-expanded="false">
                 Filtrar
             </button>
-            <ul className="dropdown-menu">
-                <li><button className="dropdown-item" onClick={() => handleFilter('A-Z')}>A-Z</button></li>
-                <li><button className="dropdown-item" onClick={() => handleFilter('Z-A')}>Z-A</button></li>
-            </ul>
-        </div>
+              <ul className="dropdown-menu">
+                  <li><button className="dropdown-item" onClick={() => handleFilter('A-Z')}>A-Z</button></li>
+                  <li><button className="dropdown-item" onClick={() => handleFilter('Z-A')}>Z-A</button></li>
+              </ul>
+          </div>
       <div className={styles.feed} >
-      {
-        characters? (characters.map((character) => (
+      { 
+        loading? (
+          <div className="spinner-border text-primary m-auto" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        ) :(characters.map((character) => (
           <div key={character.id} className="card" style={{ width: '18rem' }}>
           <Image
             src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
@@ -75,7 +81,7 @@ export default function Home() {
             <Link href={`/characters/${character.id}`} className="btn btn-primary">Mais detalhes</Link>
           </div>
         </div>
-        ))) : ""
+        )))
       }
       </div>
     </div>

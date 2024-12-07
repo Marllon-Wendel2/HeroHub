@@ -36,7 +36,7 @@ export default function CharactersPage() {
         <div>
             <Navbar/>
                 { character ? (character.map((char) => (
-                    <div className="card mb-3" key={char.id}>
+                    <div className="card mb-3 w-50 m-auto"  key={char.id}>
                         <Image src={`${char.thumbnail.path}.${char.thumbnail.extension}`} className="card-img-top" alt="..."  width={300} height={400}/>
                         <div className="card-body">
                             <h5 className="card-title">{char.name}</h5>
@@ -49,7 +49,9 @@ export default function CharactersPage() {
                             </ul>
                         </div>
                     </div>
-                ))) : "Personagem não encontrado"}
+                ))) : <div className="spinner-border text-primary m-auto" role="status" >
+                <span className="visually-hidden">Loading...</span>
+              </div>}
         </div>
     );
 }

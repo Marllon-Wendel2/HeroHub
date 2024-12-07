@@ -131,7 +131,7 @@ export async function fetchCharByName(name : string): Promise<MarvelEntity[]> {
 
     
     const baseURL = `https://gateway.marvel.com/v1/public/characters`;
-    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${name}&limit=4`;
+    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${name}&limit=10`;
 
     try {
         const response = await axios.get(url);

@@ -90,7 +90,7 @@ export default function Home() {
           <div className="card-body">
             <h5 className="card-title">{character.name}</h5>
             <p className="card-text">{character.description || 'Sem descrição disponível'}</p>
-            <Link href={`/characters/${character.id}`} className="btn btn-primary">Mais detalhes</Link>
+            <Link href={`/characters/${character.id}`} className="btn btn-outline-warning">Mais detalhes</Link>
           </div>
         </div>
         )))
@@ -101,13 +101,12 @@ export default function Home() {
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">New message</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setIsModalOpen(false)}></button>
             </div>
             <div className="modal-body">
               <form>
                 <div className="mb-3">
-                  <label htmlFor="message-text" className="col-form-label">Qual letra deseja buscar:</label>
+                  <label htmlFor="message-text" className="col-form-label">Qual letra deseja filtrar:</label>
                   <input 
                   className="form-control" 
                   id="message-text"
@@ -118,8 +117,8 @@ export default function Home() {
               </form>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setIsModalOpen(false)}>Close</button>
-              <button type="button" className="btn btn-primary" onClick={() => handleFilter(message)}>Send message</button>
+              <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal" onClick={() => setIsModalOpen(false)}>Close</button>
+              <button type="button" className="btn btn-outline-warning" onClick={() => handleFilter(message)}>Send message</button>
             </div>
           </div>
         </div>

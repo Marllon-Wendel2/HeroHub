@@ -33,7 +33,8 @@ export default function CharactersPage() {
         <div>
             <Navbar/>
                 { character ? (character.map((char) => (
-                    <div className={`card mb-3 ${window.innerWidth < 768 ? 'w-100' : 'w-50'} m-auto`}  key={char.id}>
+                    <div className={`card border-danger mb-3 ${window.innerWidth < 768 ? 'w-100' : 'w-50'} m-auto`} style={{ maxWidth: "450px" }}
+                    key={char.id}>
                         <Image src={`${char.thumbnail.path}.${char.thumbnail.extension}`} className="card-img-top" alt="Personagem"  width={300} height={400}/>
                         <div className="card-body">
                             <h5 className="card-title">{char.name}</h5>

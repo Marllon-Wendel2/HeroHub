@@ -42,6 +42,7 @@ export default function Navbar() {
                         aria-label="Search"
                         value={searchChar}
                         onChange={(e) => setSearchChar(e.target.value)} 
+                        style={{ width: "150px"  }}
                         />
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </form>

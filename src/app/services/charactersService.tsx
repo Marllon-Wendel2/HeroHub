@@ -16,9 +16,9 @@ const hash = CryptoJS
     .MD5(timestamp +privateKey+ publicKey)
     .toString(CryptoJS.enc.Hex);
 
-export async function fetchCharacters(): Promise<MarvelEntity[]> {
+export async function fetchCharacters(offset: string): Promise<MarvelEntity[]> {
     
-    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10`;
+    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10&offset=${offset}`;
 
     try {
         const response = await axios.get(url);

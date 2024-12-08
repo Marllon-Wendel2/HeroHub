@@ -17,21 +17,47 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [offset, setOffSet] = useState(0)
   
 
   useEffect(() => {
-   const fetchData = async () => {
-    try {
-      const data: MarvelEntity[] = await fetchCharacters();
-      setCharacters(data);
-      setLoading(false)
-    } catch (error) {
-      console.error("Erro ao buscar personagens:", error);
-    }
-   };
-
-   fetchData();
+    const fetchData = async () => {
+      try {
+        const data: MarvelEntity[] = await fetchCharacters("0");
+        setCharacters(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Erro ao buscar personagens:", error);
+      }
+    };
+  
+    fetchData();
   }, []);
+  
+  useEffect(() => {
+    const handleScroll = async () => {
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const documentHeight = document.documentElement.offsetHeight;
+  
+      if (scrollPosition >= documentHeight) {
+        const newOffset = offset + 10;
+        setOffSet(newOffset);
+        try {
+          const data: MarvelEntity[] = await fetchCharacters(`${newOffset}`);
+          setCharacters((prevCharacters) => [...prevCharacters, ...data]);
+        } catch (error) {
+          console.error("Erro ao buscar mais personagens:", error);
+        }
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [offset]);
+
 
   async function handleFilter(filter: string): Promise<void> {
     try {
@@ -79,8 +105,9 @@ export default function Home() {
           <div className="spinner-border text-primary m-auto" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
-        ) :(characters.map((character) => (
-          <div key={character.id} className="card" style={{ width: '18rem' }}>
+        ) : ( characters.map((character) => (
+            !character.thumbnail.path.includes("image_not_available") ?
+          (<div key={character.id} className="card" style={{ width: '18rem' }}>
           <Image
             src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
             className="card-img-top"
@@ -92,7 +119,7 @@ export default function Home() {
             <p className="card-text">{character.description || 'Sem descrição disponível'}</p>
             <Link href={`/characters/${character.id}`} className="btn btn-outline-warning">Mais detalhes</Link>
           </div>
-        </div>
+        </div>) : ""
         )))
       }
       </div>

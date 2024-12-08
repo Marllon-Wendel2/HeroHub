@@ -1,7 +1,10 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 body {
-    background-image: url('../../public/background2.jpg');
+    background-image: url('../../public/background4.jpg');
+    background-repeat: repeat;
+    background-size: cover; /* Faz com que a imagem cubra toda a página */
+    background-position: center; /* Centraliza a imagem no corpo */
+    background-attachment: fixed;
     margin-top: 8em;
 }
-

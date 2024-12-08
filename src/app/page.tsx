@@ -90,7 +90,7 @@ export default function Home() {
       <Navbar/>
       <h1 className={styles.title} >PERSONAGENS</h1>
           <div className="btn-group">
-            <button type="button" className="btn btn-info dropdown-toggle m-4" data-bs-toggle="dropdown" aria-expanded="false">
+            <button type="button" className="btn btn-outline-warning m-4" data-bs-toggle="dropdown" aria-expanded="false">
                 Filtrar
             </button>
               <ul className="dropdown-menu">

@@ -27,14 +27,14 @@ export default function Navbar() {
         <nav className="navbar" style={{ backgroundColor: "#8B0000", pointerEvents: 'auto'}}>
             <div className="container-fluid">
                 <Link className="navbar-brand" href="/"><Image 
-                src={'/Logo.jpg'}
-                width={80}
+                src={'/Marvel_Logo.svg.png'}
+                width={150}
                 height={80}
                 alt="Hero Hub Logo" 
                 /></Link>
 
                 <div>
-                    <form className="d-flex w-100 w-md-50" role="search" onSubmit={handleSearch}>
+                    <form className={`d-flex w-100 w-md-50`} role="search" onSubmit={handleSearch}>
                     <input 
                         className="form-control me-2 flex-grow-1" 
                         type="search" 
@@ -42,9 +42,9 @@ export default function Navbar() {
                         aria-label="Search"
                         value={searchChar}
                         onChange={(e) => setSearchChar(e.target.value)} 
-                        style={{ width: "150px"  }}
+                        style={{ width: "100px"  }}
                         />
-                    <button className="btn btn-outline-success" type="submit">Search</button>
+                    <button className="btn btn-outline-warning" type="submit">Search</button>
                 </form>
                 <div>
                 <div>

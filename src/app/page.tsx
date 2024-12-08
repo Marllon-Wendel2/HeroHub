@@ -39,7 +39,7 @@ export default function Home() {
       const scrollPosition = window.innerHeight + window.scrollY;
       const documentHeight = document.documentElement.offsetHeight;
   
-      if (scrollPosition >= documentHeight) {
+      if (scrollPosition >= documentHeight / 2) {
         const newOffset = offset + 10;
         setOffSet(newOffset);
         try {

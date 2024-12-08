@@ -39,7 +39,7 @@ export default function Home() {
       const scrollPosition = window.innerHeight + window.scrollY;
       const documentHeight = document.documentElement.offsetHeight;
   
-      if (scrollPosition >= documentHeight / 2) {
+      if (scrollPosition >= documentHeight) {
         const newOffset = offset + 10;
         setOffSet(newOffset);
         try {
@@ -150,8 +150,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-
+      <div className="spinner-border text-primary m-auto" role="status">
+            <span className="visually-hidden">Loading...</span>
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@
 
 import { useState } from "react";
 import { fetchCharByName } from "../services/charactersService";
-import { MarvelEntity } from "../dtos/MarvelEntity";
+import { MarvelEntity } from "../entity/MarvelEntity";
 import Link from "next/link";
 import Image from "next/image";
 

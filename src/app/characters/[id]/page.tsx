@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import { fetchCharById } from "@/app/services/charactersService";
 import { useParams } from "next/navigation";
-import { MarvelEntity } from "@/app/dtos/MarvelEntity";
+import { MarvelEntity } from "@/app/entity/MarvelEntity";
 import ListComics from "@/app/components/listOfComics";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

@@ -4,8 +4,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import * as CryptoJS from 'crypto-js';
-import { MarvelEntity } from '../dtos/MarvelEntity';
-import { Comic } from '../dtos/Comic';
+import { MarvelEntity } from '../entity/MarvelEntity';
+import { Comic } from '../entity/Comic';
 
 const baseURL = 'https://gateway.marvel.com/v1/public/characters';
 const publicKey = '74e99808fa3d0e434a8015f0522ba677';

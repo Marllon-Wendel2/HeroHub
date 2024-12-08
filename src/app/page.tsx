@@ -6,7 +6,7 @@ import Image from "next/image";
 import { fetchCharacters, fetchCharAToZ, fetchCharByName, fetchCharZtoA } from "./services/charactersService";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import { MarvelEntity } from "./dtos/MarvelEntity";
+import { MarvelEntity } from "./entity/MarvelEntity";
 import Link from "next/link";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

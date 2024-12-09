@@ -35,7 +35,7 @@ export async function fetchCharacters(offset: string): Promise<MarvelEntity[]> {
 
 export async function fetchCharZtoA(): Promise<MarvelEntity[]> {
 
-    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10&orderBy=-name`;
+    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=15&orderBy=-name`;
 
     try {
         const response = await axios.get(url);
@@ -52,7 +52,7 @@ export async function fetchCharZtoA(): Promise<MarvelEntity[]> {
 
 export async function fetchCharAToZ(): Promise<MarvelEntity[]> {
 
-    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10&orderBy=name`;
+    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=15&orderBy=name`;
 
     try {
         const response = await axios.get(url);
@@ -86,7 +86,7 @@ export async function fetchCharById(id : any): Promise<MarvelEntity[]> {
 
 export async function fetchCharByName(name : string): Promise<MarvelEntity[]> {
 
-    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${name}&limit=10`;
+    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${name}&limit=15`;
 
     try {
         const response = await axios.get(url);
@@ -103,7 +103,7 @@ export async function fetchCharByName(name : string): Promise<MarvelEntity[]> {
 
 export async function fetchComics(id : any): Promise<Comic[]> {
     
-    const url = `${baseURL}/${id}/comics?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=3`;
+    const url = `${baseURL}/${id}/comics?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=5`;
 
     try {
         const response = await axios.get(url);

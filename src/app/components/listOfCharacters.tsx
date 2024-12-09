@@ -115,7 +115,7 @@ export default function ListOfCharacters() {
             <div className="card-body">
                 <h5 className="card-title">{character.name}</h5>
                 <p className="card-text">{character.description || 'No description available'}</p>
-                <Link href={`/characters/${character.id}`} className="btn btn-outline-warning">Mais detalhes</Link>
+                <Link href={`/characters/${character.id}`} className="btn btn-outline-warning">Read more</Link>
             </div>
             </div>) : ""
             )))

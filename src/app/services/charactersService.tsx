@@ -18,7 +18,7 @@ const hash = CryptoJS
 
 export async function fetchCharacters(offset: string): Promise<MarvelEntity[]> {
     
-    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=10&offset=${offset}`;
+    const url = `${baseURL}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}&limit=15&offset=${offset}`;
 
     try {
         const response = await axios.get(url);

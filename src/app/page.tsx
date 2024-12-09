@@ -3,19 +3,12 @@
 
 import ListOfCharacters from "./components/listOfCharacters";
 import Navbar from "./components/navbar";
-
 import styles from "./page.module.css";
 
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function Home() {
  
-
-
-  
-
- 
-
   return (
     <div>
       <Navbar/>

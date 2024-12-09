@@ -39,7 +39,7 @@ export default function ListOfCharacters() {
           const documentHeight = document.documentElement.offsetHeight;
       
           if (scrollPosition >= documentHeight) {
-            const newOffset = offset + 10;
+            const newOffset = offset + 15;
             setOffSet(newOffset);
             try {
               const data: MarvelEntity[] = await fetchCharacters(`${newOffset}`);

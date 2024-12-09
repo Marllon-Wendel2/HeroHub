@@ -4,7 +4,7 @@
 
 import { useState } from "react";
 import { fetchCharByName } from "../services/charactersService";
-import { MarvelEntity } from "../entity/MarvelEntity";
+import { MarvelEntity } from "../models/MarvelEntity";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -38,7 +38,7 @@ export default function Navbar() {
                     <input 
                         className="form-control me-2 flex-grow-1" 
                         type="search" 
-                        placeholder="Search" 
+                        placeholder="Search..." 
                         aria-label="Search"
                         value={searchChar}
                         onChange={(e) => setSearchChar(e.target.value)} 
@@ -50,7 +50,14 @@ export default function Navbar() {
                 <div>
                     <ul className="list-group" style={{position: "fixed"}}>
                 {searchChar ? (searchResults.map((character: MarvelEntity) => (
-                        <li className="list-group-item list-group-item-action bg-light text-decoration-none" key={character.id}><Link className="text-decoration-none" href={`/characters/${character.id}`}>{character.name}</Link></li>
+                        <li className="list-group-item list-group-item-action text-decoration-none"
+                         key={character.id}
+                         style={{ backgroundColor: "#2F4F4F"}}
+                         >
+                            <Link className="text-decoration-none" 
+                            href={`/characters/${character.id}`}
+                            style={{ color: "dark-yellow"}}
+                            >{character.name}</Link></li>
                         ))) : ""}
                         </ul>
                     </div>

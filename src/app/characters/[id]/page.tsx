@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import { fetchCharById } from "@/app/services/charactersService";
 import { useParams } from "next/navigation";
-import { MarvelEntity } from "@/app/entity/MarvelEntity";
+import { MarvelEntity } from "@/app/models/MarvelEntity";
 import ListComics from "@/app/components/listOfComics";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -40,10 +40,10 @@ export default function CharactersPage() {
                             <h5 className="card-title">{char.name}</h5>
                             <p className="card-text">{char.description}</p>
                             <ul className="list-group">
-                                <li className="list-group-item">Comics Disponíveis: {char.comics.available}</li>
-                                <li className="list-group-item">Participou des séries: {char.series.available}</li>
-                                <li className="list-group-item">Participou des histórias: {char.stories.available}</li>
-                                <li className="list-group-item">Participou de eventos: {char.events.available}</li>
+                                <li className="list-group-item">Available Comics: {char.comics.available}</li>
+                                <li className="list-group-item">Participated in the following series: {char.series.available}</li>
+                                <li className="list-group-item">Participated in the stories: {char.stories.available}</li>
+                                <li className="list-group-item">Participated in the events: {char.events.available}</li>
                             </ul>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
 
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { Comic } from "../entity/Comic"
+import { Comic } from "../models/Comic"
 import { fetchComics } from "../services/charactersService"
 import { useParams } from "next/navigation"
 

@@ -8,7 +8,9 @@ import { MarvelEntity } from "../models/MarvelEntity";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Navbar() {
+export default function Navbar({backgroundColor = "#8B0000"}) {
+
+    console.log("Navbar backgroundColor:", backgroundColor);
 
     const [searchChar, setSearchChar] = useState("");
     const [searchResults, setSearchResults] = useState<MarvelEntity[]>([]);
@@ -21,10 +23,11 @@ export default function Navbar() {
           setSearchResults(data);
         }
     }
+    // backgroundColor: "#8B0000"
 
     return (
         <div style={{ position: "fixed", top: 0, bottom: 0, width: "100%", zIndex: 1000, pointerEvents: 'none' }}>
-        <nav className="navbar" style={{ backgroundColor: "#8B0000", pointerEvents: 'auto'}}>
+        <nav className="navbar" style={{ backgroundColor, pointerEvents: 'auto'}}>
             <div className="container-fluid">
                 <Link className="navbar-brand" href="/"><Image 
                 src={'/Marvel_Logo.svg.png'}

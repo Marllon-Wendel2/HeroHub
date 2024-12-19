@@ -31,7 +31,7 @@ export default function CharactersPage() {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar backgroundColor="black"/>
                 { character ? (character.map((char) => (
                     <div className={`card border-danger mb-3 ${window.innerWidth < 768 ? 'w-100' : 'w-50'} m-auto`} style={{ maxWidth: "450px" }}
                     key={char.id}>
